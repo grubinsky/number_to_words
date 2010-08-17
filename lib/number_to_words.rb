@@ -12,6 +12,11 @@ module NumberToWords
 
     module InstanceMethods
 
+      def to_words_with_cents
+        mantissa = (self.abs.modulo(1) * 100).ceil
+        cents_to_words = "con #{mantissa.to_words} centavos" if mantissa > 0
+        [to_words, cents_to_words].compact.join(" ")
+      end
 
       def to_words
 
